@@ -4,5 +4,6 @@ export const theme = {
   },
   text: {
     black: "#333",
+    gray: "#8C8C8C",
   },
 };

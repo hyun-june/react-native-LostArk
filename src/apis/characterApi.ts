@@ -1,16 +1,22 @@
-// const test = async () => {
-//     try {
-//       const response = await axios.get(
-//         "https://developer-lostark.game.onstove.com/characters/피엇음/siblings",
-//         {
-//           headers: {
-//             Authorization: `bearer ${API_KEY}`,
-//             Accept: "application/json",
-//           },
-//         }
-//       );
-//       console.log("Data", response.data);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+import { instance } from "./baseApi";
+
+// 원정대 호출
+export const getRoster = async (id: string) => {
+  try {
+    const response = await instance.get(`characters/${id}/siblings`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Fail to load character Roster");
+  }
+};
+
+const characterURL = "/armories/characters";
+
+export const getCharacter = async (id: string) => {
+  try {
+    const response = await instance.get(`${characterURL}/${id}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Fail to load character Character");
+  }
+};
