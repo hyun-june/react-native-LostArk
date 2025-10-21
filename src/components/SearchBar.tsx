@@ -6,7 +6,7 @@ const SearchBar = ({ text, setText, onSearch }: searchProps) => {
   const onChangeText = (payload: string) => setText(payload);
 
   return (
-    <View style={{ marginTop: 60 }}>
+    <View>
       <TextInput
         style={styles.searchInput}
         clearButtonMode="while-editing"

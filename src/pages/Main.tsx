@@ -1,30 +1,19 @@
-import { View } from "react-native";
-import SearchBar from "../components/SearchBar";
-import { useState } from "react";
-import { useGetCharacter, useGetRoster } from "../hooks/useGetCharacter";
-import Tab from "../components/Tab";
+import { View, StyleSheet, Text } from "react-native";
+import { theme } from "./../theme/theme";
 
 const Main = () => {
-  const [text, setText] = useState<string>("");
-  const [searchId, setSearchId] = useState<string>("");
-
-  // const { data, isLoading, isError, error } = useGetRoster(searchId);
-  // console.log("🚀 ~ Main ~ data:", data);
-
-  const { data } = useGetCharacter(searchId);
-  // console.log("🚀 ~ Main ~ data:", data);
-
-  const onSearch = () => {
-    if (!text.trim()) return;
-    setSearchId(text);
-  };
-
   return (
     <View>
-      <SearchBar text={text} setText={setText} onSearch={onSearch} />
-      <Tab data={data} />
+      <Text style={{ color: "white" }}>Main</Text>
     </View>
   );
 };
 
 export default Main;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.background.black,
+  },
+});

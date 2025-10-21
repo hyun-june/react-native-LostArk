@@ -1,8 +1,6 @@
 import { View, Text, Image } from "react-native";
 
 const CharacterForm = ({ data }) => {
-  console.log("🚀 ~ CharacterForm ~ data:", data);
-
   return (
     <View>
       <Image
