@@ -1,6 +1,6 @@
 import { View, StyleSheet, TextInput } from "react-native";
 import { theme } from "../theme/theme";
-import { searchProps } from "../models/components";
+import { searchProps } from "../models/componentsType";
 
 const SearchBar = ({ text, setText, onSearch }: searchProps) => {
   const onChangeText = (payload: string) => setText(payload);
