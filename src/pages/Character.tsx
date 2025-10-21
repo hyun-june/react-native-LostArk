@@ -2,7 +2,7 @@ import { useRoute } from "@react-navigation/native";
 import { View } from "react-native";
 import { useGetCharacter } from "../hooks/useGetCharacter";
 import Tab from "../components/Tab";
-import { CharRouteProp } from "../models/RouteType";
+import { CharRouteProp } from "../models/asda";
 
 const Character = () => {
   const route = useRoute<CharRouteProp>();

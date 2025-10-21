@@ -4,7 +4,7 @@ import { useState } from "react";
 import SearchBar from "./SearchBar";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
-import { HeaderRouteProp, NavigationProp } from "../models/RouteType";
+import { HeaderRouteProp, NavigationProp } from "../models/asda";
 
 const Header = () => {
   const navigation = useNavigation<NavigationProp>();

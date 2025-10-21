@@ -1,19 +1,5 @@
-import { RouteProp } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-
 export interface searchProps {
   text: string;
   setText: React.Dispatch<React.SetStateAction<string>>;
   onSearch: () => void;
 }
-
-export type RootStackParamList = {
-  Main: undefined;
-  Char: { searchId: string };
-};
-
-export type HeaderRouteProp = RouteProp<
-  RootStackParamList,
-  keyof RootStackParamList
->;
-export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
