@@ -19,7 +19,6 @@ const Header = () => {
   };
 
   const isMain = route.name === "Main";
-  console.log("🚀 ~ Header ~ isMain:", isMain);
 
   return (
     <View style={isMain ? styles.mainHeader : styles.subHeader}>
