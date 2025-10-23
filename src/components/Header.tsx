@@ -40,9 +40,10 @@ export default Header;
 
 const styles = StyleSheet.create({
   mainHeader: {
-    marginVertical: 20,
+    marginTop: 60,
+    marginBottom: 10,
   },
   subHeader: {
-    marginVertical: 10,
+    marginTop: 50,
   },
 });

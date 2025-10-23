@@ -1,6 +1,7 @@
 import { View, Text, Image, StyleSheet } from "react-native";
-import { CharInfoProps } from "../models/charType";
 import { CharFormProps } from "./../models/charType";
+import CharInfo from "./CharacterFormComp/CharInfo";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 const CharacterForm = ({ Char }: CharFormProps) => {
   console.log("🚀 ~ CharacterForm ~ data:", Char);
@@ -11,22 +12,11 @@ const CharacterForm = ({ Char }: CharFormProps) => {
     { label: "닉네임", data: Char?.CharacterName },
     { label: "길드", data: Char?.GuildName },
     { label: "전투력", data: Char?.CombatPower },
+    { label: "아이템 레벨", data: Char?.ItemAvgLevel },
+    { label: "서버", data: Char?.ServerName },
+    { label: "칭호", data: Char?.Title },
+    { label: "영지 이름", data: Char?.TownName },
   ];
-
-  const CharInfo = ({ label, data }: CharInfoProps) => {
-    return (
-      <View
-        style={{
-          flexDirection: "row",
-          gap: 10,
-          alignItems: "center",
-        }}
-      >
-        <Text style={style.charInfoLabel}>{label}</Text>
-        <Text style={{ color: "white", fontSize: 20 }}>{data}</Text>
-      </View>
-    );
-  };
 
   return (
     <View style={style.charCotainer}>
@@ -36,6 +26,7 @@ const CharacterForm = ({ Char }: CharFormProps) => {
           {charData.map(({ label, data }, index) => (
             <CharInfo key={index} label={label} data={data} />
           ))}
+          <MaterialCommunityIcons name="sword-cross" size={24} color="white" />
         </View>
       </View>
     </View>
@@ -54,8 +45,8 @@ const style = StyleSheet.create({
   },
   charImg: {
     width: "100%",
-    height: 400,
-    transform: [{ scale: 1.6 }, { translateY: 70 }, { translateX: 60 }],
+    height: 380,
+    transform: [{ scale: 1.5 }, { translateY: 70 }, { translateX: 60 }],
     zIndex: 10,
   },
   charTextOverlay: {
@@ -63,19 +54,8 @@ const style = StyleSheet.create({
     top: 0,
     left: 0,
     zIndex: 99,
-
     height: "100%",
     padding: 10,
     gap: 10,
-  },
-  charInfoLabel: {
-    backgroundColor: "#333",
-    borderRadius: 50,
-    color: "white",
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    fontSize: 20,
-    width: 100,
-    textAlign: "center",
   },
 });

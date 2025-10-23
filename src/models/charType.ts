@@ -6,6 +6,10 @@ export interface CharData {
   CharacterImage: string;
   CharacterLevel: number;
   CombatPower: string;
+  ItemAvgLevel: string;
+  ServerName: string;
+  Title: string;
+  TownName: string;
 }
 
 export interface CharFormProps {
