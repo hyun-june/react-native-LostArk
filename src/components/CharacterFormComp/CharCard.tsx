@@ -123,7 +123,7 @@ const style = StyleSheet.create({
   },
   charWrapper: {
     width: "100%",
-    height: 250,
+    height: 240,
     flexDirection: "row",
     padding: 10,
     backgroundColor: "#757575",

@@ -4,6 +4,7 @@ import { useGetCharacter } from "../hooks/useGetCharacter";
 import Tab from "../components/Tab";
 import { CharRouteProp } from "../models/routeType";
 import CharacterForm from "./../components/CharacterForm";
+import AppLayout from "../components/Layout/AppLayout";
 
 const Character = () => {
   const route = useRoute<CharRouteProp>();
@@ -20,10 +21,10 @@ const Character = () => {
     );
 
   return (
-    <View>
+    <AppLayout>
       {/* <Tab data={data} /> */}
       <CharacterForm charProfile={data?.ArmoryProfile} />
-    </View>
+    </AppLayout>
   );
 };
 

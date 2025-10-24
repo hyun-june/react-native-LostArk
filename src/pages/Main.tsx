@@ -1,11 +1,12 @@
 import { View, StyleSheet, Text } from "react-native";
 import { theme } from "./../theme/theme";
+import AppLayout from "../components/Layout/AppLayout";
 
 const Main = () => {
   return (
-    <View>
+    <AppLayout>
       <Text style={{ color: "white" }}>Main</Text>
-    </View>
+    </AppLayout>
   );
 };
 

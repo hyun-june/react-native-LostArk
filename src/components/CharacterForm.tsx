@@ -15,5 +15,5 @@ const CharacterForm = ({ charProfile }: CharFormProps) => {
 export default CharacterForm;
 
 const style = StyleSheet.create({
-  charCotainer: { marginVertical: 20 },
+  charCotainer: {},
 });

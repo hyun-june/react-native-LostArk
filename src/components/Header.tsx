@@ -42,8 +42,10 @@ const styles = StyleSheet.create({
   mainHeader: {
     marginTop: 60,
     marginBottom: 10,
+    paddingHorizontal: 16,
   },
   subHeader: {
     marginTop: 50,
+    paddingHorizontal: 16,
   },
 });
