@@ -13,7 +13,7 @@ export interface CharData {
 }
 
 export interface CharFormProps {
-  Char: CharData;
+  charProfile: CharData;
 }
 
 export interface CharInfoProps {

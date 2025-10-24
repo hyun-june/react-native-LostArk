@@ -22,7 +22,7 @@ const Character = () => {
   return (
     <View>
       {/* <Tab data={data} /> */}
-      <CharacterForm Char={data?.ArmoryProfile} />
+      <CharacterForm charProfile={data?.ArmoryProfile} />
     </View>
   );
 };

@@ -7,12 +7,13 @@ const CharInfo = ({ label, data }: CharInfoProps) => {
     <View
       style={{
         flexDirection: "row",
-        gap: 10,
         alignItems: "center",
+        marginRight: 20,
+        gap: 10,
       }}
     >
       <Text style={style.charInfoLabel}>{label}</Text>
-      <Text style={{ color: "white", fontSize: 20 }}>{data}</Text>
+      <Text style={{ color: "white", fontSize: 18 }}>{data}</Text>
     </View>
   );
 };
@@ -21,12 +22,10 @@ export default CharInfo;
 
 const style = StyleSheet.create({
   charInfoLabel: {
-    backgroundColor: "#333",
     borderRadius: 50,
-    color: "white",
+    color: "black",
     paddingVertical: 3,
     fontSize: 20,
-    width: 80,
-    textAlign: "center",
+    fontWeight: "bold",
   },
 });
