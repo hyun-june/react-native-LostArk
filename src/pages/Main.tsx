@@ -1,6 +1,8 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, ActivityIndicator } from "react-native";
 import { theme } from "./../theme/theme";
 import AppLayout from "../components/Layout/AppLayout";
+import CharEquipment from "../components/CharacterFormComp/CharEquipment";
+import { useGetCharacter } from "../hooks/useGetCharacter";
 
 const Main = () => {
   return (
