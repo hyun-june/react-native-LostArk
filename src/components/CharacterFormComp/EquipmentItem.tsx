@@ -1,15 +1,42 @@
 import { View, Text, StyleSheet } from "react-native";
 import EquipmentBox from "./EquipmentBox";
+import {
+  cleanText,
+  getFirstNumber,
+  getLastNumber,
+  jsonFormatter,
+} from "../../utils/formatJsonData";
 
 const EquipmentItem = ({ ...props }) => {
-  const { data: item } = props;
+  const { data } = props;
+
+  const formatData = jsonFormatter(data?.Tooltip);
+  // console.log("🚀 ~ EquipmentItem ~ formatData:", formatData);
+
+  // 품질
+  const qualityValue = formatData.Element_001.value.qualityValue;
+
+  // 상급재련
+  const advancedLevel = getFirstNumber(cleanText(formatData.Element_005.value));
+
+  // 초월
+  const transcend = getLastNumber(
+    cleanText(formatData.Element_010.value.Element_000.topStr)
+  );
 
   return (
     <View style={{ flexDirection: "row", gap: 5 }}>
-      <EquipmentBox {...props} data={item} />
+      <EquipmentBox
+        {...props}
+        data={data}
+        qualityValue={qualityValue}
+        transcend={transcend}
+      />
       <View style={{ gap: 10 }}>
         <View>
-          <Text style={styles.textBox}>{item?.Name}x30</Text>
+          <Text style={styles.textBox}>
+            {data?.Name} x{advancedLevel}
+          </Text>
         </View>
         <View
           style={{

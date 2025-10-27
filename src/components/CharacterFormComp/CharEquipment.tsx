@@ -4,12 +4,12 @@ import AccessoryItem from "./AccessoryItem";
 
 const CharEquipment = ({ data, img }) => {
   const equipmentOrder = [1, 5, 2, 3, 4, 0];
-  const equipMentData = [...data].slice(0, 6);
+  const equipMentData = [...data]?.slice(0, 6);
   const renderEquipment = equipmentOrder.map((i) => equipMentData[i]);
   // console.log("🚀 ~ CharEquipment ~ renderEquipment:", renderEquipment);
 
-  const accessoryData = [...data].slice(6, 13);
-  console.log("🚀 ~ CharEquipment ~ accessoryData:", accessoryData);
+  const accessoryData = [...data].slice(6, 11);
+  // console.log("🚀 ~ CharEquipment ~ accessoryData:", accessoryData);
 
   return (
     <View style={styles.container}>
@@ -36,12 +36,6 @@ const CharEquipment = ({ data, img }) => {
             }}
           />
           <View style={{ position: "absolute", gap: 10, top: 10, left: 5 }}>
-            {/* <EquipmentItem chowol="dd" quality={11} />
-            <EquipmentItem chowol="dd" quality={11} />
-            <EquipmentItem chowol="dd" quality={11} />
-            <EquipmentItem chowol="dd" quality={11} />
-            <EquipmentItem chowol="dd" quality={11} />
-            <EquipmentItem chowol="dd" quality={11} /> */}
             {renderEquipment.map((item, i) => {
               return <EquipmentItem data={item} key={i} />;
             })}
@@ -50,6 +44,8 @@ const CharEquipment = ({ data, img }) => {
             {accessoryData.map((item, i) => (
               <AccessoryItem data={item} key={i} />
             ))}
+            <AccessoryItem data={data[11]} type="rock" />
+            <AccessoryItem data={data[12]} />
           </View>
         </View>
       </View>

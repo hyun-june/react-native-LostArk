@@ -1,19 +1,29 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import EquipmentBox from "./EquipmentBox";
-import { jsonFormatter } from "../../utils/formatJsonData";
+import { cleanText, jsonFormatter } from "../../utils/formatJsonData";
 import { theme } from "../../theme/theme";
 
 const AccessoryItem = ({ ...props }) => {
-  const { data } = props;
+  const { data, type } = props;
   // console.log("🚀 ~ AccessoryItem ~ data:", data.Tooltip);
 
   const formatData = jsonFormatter(data?.Tooltip);
+
+  let rockOptions = [];
+
+  if (type === "rock") {
+    const base = formatData?.Element_006?.value?.Element_000?.contentStr;
+    rockOptions = [
+      cleanText(base?.Element_000?.contentStr ?? "").replace(/[\[\]]/g, ""),
+      cleanText(base?.Element_001?.contentStr ?? "").replace(/[\[\]]/g, ""),
+    ];
+  }
 
   const qualityValue = formatData.Element_001.value.qualityValue;
 
   const selectColor =
     qualityValue === 100 ? "gold" : qualityValue >= 90 ? "purple" : "blue";
-  console.log("🚀 ~ AccessoryItem ~ selectColor:", selectColor);
+
   return (
     <View style={{ flexDirection: "row", gap: 10 }}>
       {qualityValue && (
@@ -23,6 +33,11 @@ const AccessoryItem = ({ ...props }) => {
           <View style={[styles.diamond, styles.gold]} />
         </View>
       )}
+      {/* {type === "rock" ? (
+        <View>
+          <Text style={{ color: "white" }}>{rockOptions}</Text>
+        </View>
+      ) : null} */}
       <View style={{ marginLeft: "auto" }}>
         <EquipmentBox {...props} qualityValue={qualityValue} />
       </View>

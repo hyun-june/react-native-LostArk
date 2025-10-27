@@ -12,7 +12,7 @@ const Character = () => {
   const { searchId } = route.params || {};
   // const { data, isLoading, error } = useGetCharacter(searchId);
   const { data, isLoading, error } = useGetCharacter("피엇음");
-  console.log("🚀 ~ Character ~ data:", data);
+  // console.log("🚀 ~ Character ~ data:", data);
 
   if (error) {
     console.error("error", error);

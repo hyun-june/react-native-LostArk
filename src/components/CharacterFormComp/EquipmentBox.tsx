@@ -2,9 +2,7 @@ import { View, Text, Image, StyleSheet, ImageBackground } from "react-native";
 import { theme } from "../../theme/theme";
 
 const EquipmentBox = ({ ...props }) => {
-  const { data: item, qualityValue } = props;
-
-  const chowol = 11;
+  const { data: item, qualityValue, transcend } = props;
 
   const selectColor =
     qualityValue === 100 ? "gold" : qualityValue >= 90 ? "purple" : "blue";
@@ -16,7 +14,7 @@ const EquipmentBox = ({ ...props }) => {
         source={{ uri: item?.Icon }}
         imageStyle={styles.equipMentImg}
       >
-        {chowol && (
+        {transcend && (
           <View style={styles.equipmentBoxTop}>
             <Image
               style={{
@@ -29,7 +27,9 @@ const EquipmentBox = ({ ...props }) => {
                 uri: "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/game/ico_tooltip_transcendence.png",
               }}
             />
-            <Text style={{ color: "white", fontWeight: "bold" }}>21</Text>
+            <Text style={{ color: "white", fontWeight: "bold" }}>
+              {transcend}
+            </Text>
           </View>
         )}
         {qualityValue >= 0 && (
