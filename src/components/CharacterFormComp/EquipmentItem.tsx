@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import EquipmentBox from "./EquipmentBox";
 import {
   cleanText,
@@ -32,9 +32,28 @@ const EquipmentItem = ({ ...props }) => {
         qualityValue={qualityValue}
         transcend={transcend}
       />
-      <View style={{ gap: 10 }}>
+      <View style={{ gap: 2 }}>
         <View>
-          <Text style={styles.textBox}>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
+            <Image
+              style={{
+                width: 15,
+                height: 15,
+                left: 3,
+              }}
+              source={{
+                uri: "https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/game/ico_tooltip_transcendence.png",
+              }}
+            />
+            <Text style={{ color: "white", fontSize: 8 }}>{transcend}</Text>
+          </View>
+          <Text
+            style={{
+              ...styles.textBox,
+              fontSize: 10,
+              color: "#FFE940",
+            }}
+          >
             {data?.Name} x{advancedLevel}
           </Text>
         </View>
@@ -56,12 +75,7 @@ export default EquipmentItem;
 
 const styles = StyleSheet.create({
   textBox: {
-    borderWidth: 2,
-    borderColor: "#757575",
     color: "white",
-    paddingHorizontal: 5,
-    textAlign: "center",
-    fontSize: 10,
-    backgroundColor: "black",
+    fontSize: 8,
   },
 });

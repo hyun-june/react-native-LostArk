@@ -7,6 +7,18 @@ const AccessoryItem = ({ ...props }) => {
   const { data, type } = props;
   // console.log("🚀 ~ AccessoryItem ~ data:", data.Tooltip);
 
+  const boxStyles = {
+    gold: theme.box.gold,
+    purple: theme.box.purple,
+    blue: theme.box.blue,
+  };
+
+  const textStyles = {
+    gold: theme.text.yellow,
+    purple: theme.text.purple,
+    blue: theme.text.blue,
+  };
+
   const formatData = jsonFormatter(data?.Tooltip);
 
   let rockOptions = [];
@@ -25,12 +37,37 @@ const AccessoryItem = ({ ...props }) => {
     qualityValue === 100 ? "gold" : qualityValue >= 90 ? "purple" : "blue";
 
   return (
-    <View style={{ flexDirection: "row", gap: 10 }}>
+    <View style={{ flexDirection: "row", gap: 5 }}>
+      <View style={{ marginLeft: "auto" }}>
+        <EquipmentBox {...props} qualityValue={qualityValue} />
+      </View>
       {qualityValue && (
-        <View style={{ justifyContent: "space-between", paddingVertical: 5 }}>
-          <View style={[styles.diamond, styles[selectColor]]} />
-          <View style={[styles.diamond, styles.purple]} />
-          <View style={[styles.diamond, styles.gold]} />
+        <View style={{ justifyContent: "space-around" }}>
+          <View style={styles.diamondText}>
+            <View style={[styles.diamond, boxStyles[selectColor]]} />
+            <Text style={{ color: textStyles[selectColor], fontSize: 8 }}>
+              낙인력 +8%
+            </Text>
+          </View>
+
+          <View style={styles.diamondText}>
+            <View style={[styles.diamond, boxStyles[selectColor]]} />
+            <Text
+              style={{
+                color: textStyles[selectColor],
+                fontSize: 8,
+                width: 100,
+              }}
+            >
+              세레나데, 신앙, 조화 게이지 획득량 +6.00%
+            </Text>
+          </View>
+          <View style={styles.diamondText}>
+            <View style={[styles.diamond, boxStyles[selectColor]]} />
+            <Text style={{ color: textStyles[selectColor], fontSize: 8 }}>
+              아군 공격력 강화 효과 +5.00%
+            </Text>
+          </View>
         </View>
       )}
       {/* {type === "rock" ? (
@@ -38,9 +75,6 @@ const AccessoryItem = ({ ...props }) => {
           <Text style={{ color: "white" }}>{rockOptions}</Text>
         </View>
       ) : null} */}
-      <View style={{ marginLeft: "auto" }}>
-        <EquipmentBox {...props} qualityValue={qualityValue} />
-      </View>
     </View>
   );
 };
@@ -49,12 +83,13 @@ export default AccessoryItem;
 
 const styles = StyleSheet.create({
   diamond: {
-    width: 15,
-    height: 15,
+    width: 8,
+    height: 8,
     transform: [{ rotate: "45deg" }],
     borderWidth: 2,
   },
-  blue: theme.box.blue,
-  purple: theme.box.purple,
-  gold: theme.box.gold,
+  diamondText: {
+    flexDirection: "row",
+    gap: 5,
+  },
 });

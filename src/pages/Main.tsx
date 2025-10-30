@@ -3,6 +3,7 @@ import { theme } from "./../theme/theme";
 import AppLayout from "../components/Layout/AppLayout";
 import CharEquipment from "../components/CharacterFormComp/CharEquipment";
 import { useGetCharacter } from "../hooks/useGetCharacter";
+import CharCard from "../components/CharacterFormComp/CharCard";
 
 const Main = () => {
   return (

@@ -6,6 +6,7 @@ import { CharRouteProp } from "../models/routeType";
 import CharacterForm from "./../components/CharacterForm";
 import AppLayout from "../components/Layout/AppLayout";
 import CharEquipment from "../components/CharacterFormComp/CharEquipment";
+import CharCard from "../components/CharacterFormComp/CharCard";
 
 const Character = () => {
   const route = useRoute<CharRouteProp>();
@@ -37,12 +38,13 @@ const Character = () => {
 
   return (
     <AppLayout>
-      {/* <Tab data={data} /> */}
       {/* <CharacterForm charProfile={data?.ArmoryProfile} /> */}
-      <CharEquipment
-        data={data?.ArmoryEquipment}
-        img={data?.ArmoryProfile.CharacterImage}
+
+      <CharCard
+        charProfile={data?.ArmoryProfile}
+        classEngraving={data?.ArkPassive.Title}
       />
+      <Tab data={data} />
     </AppLayout>
   );
 };
