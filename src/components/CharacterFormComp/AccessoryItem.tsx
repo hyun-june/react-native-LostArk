@@ -2,77 +2,107 @@ import { StyleSheet, View, Text } from "react-native";
 import EquipmentBox from "./EquipmentBox";
 import { cleanText, jsonFormatter } from "../../utils/formatJsonData";
 import { theme } from "../../theme/theme";
+import { ColorKey } from "../../models/common";
 
 const AccessoryItem = ({ ...props }) => {
   const { data, type } = props;
-  // console.log("🚀 ~ AccessoryItem ~ data:", data.Tooltip);
 
   const boxStyles = {
-    gold: theme.box.gold,
-    purple: theme.box.purple,
-    blue: theme.box.blue,
-  };
+    FE9600: theme.box.gold,
+    CE43FC: theme.box.purple,
+    "00B5FF": theme.box.blue,
+  } as const;
 
   const textStyles = {
-    gold: theme.text.yellow,
-    purple: theme.text.purple,
-    blue: theme.text.blue,
-  };
+    FE9600: theme.text.yellow,
+    CE43FC: theme.text.purple,
+    "00B5FF": theme.text.blue,
+  } as const;
 
   const formatData = jsonFormatter(data?.Tooltip);
 
-  let rockOptions = [];
+  const accessoryData = formatData?.Element_006?.value?.Element_001;
+
+  const accessoryOptions = accessoryData
+    ? [
+        ...accessoryData.matchAll(
+          />([^<]+)<FONT COLOR='([^']+)'>([^<]+)<\/FONT>/gi
+        ),
+      ].map((match) => ({
+        text: `${match[1].trim()} ${match[3].trim()}`,
+        color: match[2].trim() as ColorKey,
+      }))
+    : [];
+
+  let rockOptions: string[] = [];
 
   if (type === "rock") {
     const base = formatData?.Element_006?.value?.Element_000?.contentStr;
     rockOptions = [
       cleanText(base?.Element_000?.contentStr ?? "").replace(/[\[\]]/g, ""),
       cleanText(base?.Element_001?.contentStr ?? "").replace(/[\[\]]/g, ""),
+      cleanText(base?.Element_002?.contentStr ?? "").replace(/[\[\]]/g, ""),
     ];
   }
 
-  const qualityValue = formatData.Element_001.value.qualityValue;
+  // let braceletOptions: string[] = [];
 
-  const selectColor =
-    qualityValue === 100 ? "gold" : qualityValue >= 90 ? "purple" : "blue";
+  // if (type === "bracelet") {
+  //   const base = formatData?.Element_005?.value?.Element_001;
+  //   const clean = base.split(/<img[^>]*>/gi).filter(Boolean);
+
+  //   braceletOptions = clean.map((text: string) =>
+  //     text
+  //       .replace(/<[^>]+>/g, "")
+  //       .replace(/\s+/g, " ")
+  //       .trim()
+  //   );
+  // }
+
+  const qualityValue = formatData?.Element_001?.value?.qualityValue;
 
   return (
     <View style={{ flexDirection: "row", gap: 5 }}>
-      <View style={{ marginLeft: "auto" }}>
+      <View>
         <EquipmentBox {...props} qualityValue={qualityValue} />
       </View>
       {qualityValue && (
         <View style={{ justifyContent: "space-around" }}>
-          <View style={styles.diamondText}>
-            <View style={[styles.diamond, boxStyles[selectColor]]} />
-            <Text style={{ color: textStyles[selectColor], fontSize: 8 }}>
-              낙인력 +8%
-            </Text>
-          </View>
-
-          <View style={styles.diamondText}>
-            <View style={[styles.diamond, boxStyles[selectColor]]} />
-            <Text
-              style={{
-                color: textStyles[selectColor],
-                fontSize: 8,
-                width: 100,
-              }}
-            >
-              세레나데, 신앙, 조화 게이지 획득량 +6.00%
-            </Text>
-          </View>
-          <View style={styles.diamondText}>
-            <View style={[styles.diamond, boxStyles[selectColor]]} />
-            <Text style={{ color: textStyles[selectColor], fontSize: 8 }}>
-              아군 공격력 강화 효과 +5.00%
-            </Text>
-          </View>
+          {accessoryOptions.map((item, i) => {
+            return (
+              <View key={i} style={styles.diamondText}>
+                <View style={[styles.diamond, boxStyles[item.color]]} />
+                <Text style={{ color: textStyles[item.color], fontSize: 8 }}>
+                  {item.text}
+                </Text>
+              </View>
+            );
+          })}
         </View>
       )}
-      {/* {type === "rock" ? (
+      {type === "rock" ? (
+        <View style={{ justifyContent: "space-around" }}>
+          {rockOptions?.map((item, i) => (
+            <Text
+              style={{
+                fontSize: 8,
+                color: i === 2 ? theme.text.red : "white",
+              }}
+              key={i}
+            >
+              {item}
+            </Text>
+          ))}
+        </View>
+      ) : null}
+
+      {/* {type === "bracelet" ? (
         <View>
-          <Text style={{ color: "white" }}>{rockOptions}</Text>
+          {braceletOptions.slice(0, 2)?.map((item, i) => (
+            <Text style={{ color: "white" }} key={i}>
+              {item}
+            </Text>
+          ))}
         </View>
       ) : null} */}
     </View>

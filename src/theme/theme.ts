@@ -8,6 +8,7 @@ export const theme = {
     yellow: "#FFB639",
     blue: "#4472C4",
     purple: "#C60DFF",
+    red: "#FF4D4D",
   },
   box: {
     blue: {
