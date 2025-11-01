@@ -15,7 +15,7 @@ const Header = () => {
   const onSearch = () => {
     if (!text.trim()) return;
     setSearchId(text);
-    navigation.navigate("Char", { searchId: text });
+    navigation.navigate("Character", { searchId: text });
   };
 
   const isMain = route.name === "Main";

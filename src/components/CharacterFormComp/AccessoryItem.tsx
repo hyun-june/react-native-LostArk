@@ -25,7 +25,7 @@ const AccessoryItem = ({ ...props }) => {
 
   const accessoryOptions = accessoryData
     ? [
-        ...accessoryData.matchAll(
+        ...accessoryData?.matchAll(
           />([^<]+)<FONT COLOR='([^']+)'>([^<]+)<\/FONT>/gi
         ),
       ].map((match) => ({
@@ -37,7 +37,10 @@ const AccessoryItem = ({ ...props }) => {
   let rockOptions: string[] = [];
 
   if (type === "rock") {
-    const base = formatData?.Element_006?.value?.Element_000?.contentStr;
+    let base = formatData?.Element_006?.value?.Element_000?.contentStr;
+    if (base === undefined)
+      base = formatData?.Element_007?.value?.Element_000?.contentStr;
+
     rockOptions = [
       cleanText(base?.Element_000?.contentStr ?? "").replace(/[\[\]]/g, ""),
       cleanText(base?.Element_001?.contentStr ?? "").replace(/[\[\]]/g, ""),
@@ -68,7 +71,7 @@ const AccessoryItem = ({ ...props }) => {
       </View>
       {qualityValue && (
         <View style={{ justifyContent: "space-around" }}>
-          {accessoryOptions.map((item, i) => {
+          {accessoryOptions?.map((item, i) => {
             return (
               <View key={i} style={styles.diamondText}>
                 <View style={[styles.diamond, boxStyles[item.color]]} />

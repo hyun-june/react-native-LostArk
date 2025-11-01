@@ -14,14 +14,16 @@ const EquipmentItem = ({ ...props }) => {
   // console.log("🚀 ~ EquipmentItem ~ formatData:", formatData);
 
   // 품질
-  const qualityValue = formatData.Element_001.value.qualityValue;
+  const qualityValue = formatData?.Element_001?.value?.qualityValue;
 
   // 상급재련
-  const advancedLevel = getFirstNumber(cleanText(formatData.Element_005.value));
+  const advancedLevel = getFirstNumber(
+    cleanText(formatData?.Element_005?.value)
+  );
 
   // 초월
   const transcend = getLastNumber(
-    cleanText(formatData.Element_010.value.Element_000.topStr)
+    cleanText(formatData?.Element_010?.value?.Element_000?.topStr)
   );
 
   return (
