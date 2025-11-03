@@ -5,8 +5,9 @@ import CharacterForm from "./CharacterForm";
 import CharEquipment from "./CharacterFormComp/CharEquipment";
 
 const Tab = ({ data }) => {
-  const [currentTab, setCurrentTab] = useState<number>(0);
   // console.log("🚀 ~ Tab ~ data:", data);
+  const [currentTab, setCurrentTab] = useState<number>(0);
+
   const headerList = [
     { label: "장비", des: <CharEquipment data={data?.ArmoryEquipment} /> },
     { label: "아크패시브", des: "아크패시브탭" },

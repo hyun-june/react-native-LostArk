@@ -28,6 +28,11 @@ const BottomTab = () => {
           options={{ tabBarLabel: "캐릭터" }}
         />
         <Tab.Screen
+          name="MyChar"
+          component={View}
+          options={{ tabBarLabel: "숙제" }}
+        />
+        <Tab.Screen
           name="AddChar"
           component={View}
           options={{ tabBarLabel: "등록" }}

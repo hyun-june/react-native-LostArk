@@ -10,6 +10,7 @@ import CharCard from "../components/CharacterFormComp/CharCard";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import useSearchStore from "../store/useSearchStore";
+import { jsonFormatter } from "./../utils/formatJsonData";
 
 const Character = () => {
   const { myChar, fetchChar } = useSearchStore();
@@ -20,8 +21,11 @@ const Character = () => {
   // console.log("🚀 ~ Character ~ characterId:", characterId);
 
   const { data, isLoading, error } = useGetCharacter(characterId);
-  // const { data, isLoading, error } = useGetCharacter("피엇음");
-  // console.log("🚀 ~ Character ~ data:", data);
+  // const { data, isLoading, error } = useGetCharacter("필례");
+  // console.log("🚀 ~ Character ~ data:", data?.ArmoryEquipment);
+
+  // const test = jsonFormatter(data?.ArmoryEquipment[0]?.Tooltip);
+  // console.log("🚀 ~ Character ~ test:", test);
 
   if (error) {
     console.error("error", error);

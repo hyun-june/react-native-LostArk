@@ -9,7 +9,6 @@ import {
 import { theme } from "../../theme/theme";
 
 const CharEquipment = ({ data }) => {
-  // console.log("🚀 ~ CharEquipment ~ data:", data);
   const equipmentOrder = [1, 5, 2, 3, 4, 0];
   const equipMentData = [...data]?.slice(0, 6);
   // console.log("🚀 ~ CharEquipment ~ equipMentData:", equipMentData);
@@ -27,7 +26,9 @@ const CharEquipment = ({ data }) => {
   );
 
   const elixir = jsonFormatter(data[1]?.Tooltip);
-  const elixirText = elixir?.Element_012?.value?.Element_000?.topStr;
+  const elixirText =
+    elixir?.Element_012?.value?.Element_000?.topStr ||
+    elixir?.Element_011?.value?.Element_000?.topStr;
   const elixirResult = [
     ...elixirText?.matchAll(/<FONT[^>]*>([^<]+)<\/FONT>/gi),
   ].map((item) => item[1]);
@@ -52,7 +53,7 @@ const CharEquipment = ({ data }) => {
               lineHeight: 30,
             }}
           >
-            {elixirResult[1].replaceAll(/[()]/g, "")}
+            {elixirResult[1]?.replaceAll(/[()]/g, "")}
           </Text>
         </ImageBackground>
         <ImageBackground
