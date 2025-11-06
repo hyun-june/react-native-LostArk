@@ -1,15 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Main from "./src/pages/Main";
 import {
   DefaultTheme,
   NavigationContainer,
   Theme,
 } from "@react-navigation/native";
 import { theme } from "./src/theme/theme";
-import Header from "./src/components/Header";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
-import AddCharacter from "./src/components/AddCharacter";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTab from "./src/components/BottomTab";
 
@@ -39,11 +35,6 @@ export default function App() {
               name="Tabs"
               component={BottomTab}
               options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="AddCharacterModal"
-              component={AddCharacter}
-              options={{ presentation: "modal", headerShown: false }}
             />
           </Stack.Navigator>
         </NavigationContainer>

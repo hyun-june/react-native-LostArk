@@ -15,8 +15,8 @@ const Main = () => {
   }, []);
   return (
     <AppLayout>
-      <Text style={{ color: "white" }}>Main</Text>
-      <Text style={{ color: "white" }}>{myChar}</Text>
+      {/* <Text style={{ color: "white" }}>Main</Text>
+      <Text style={{ color: "white" }}>{myChar}</Text> */}
     </AppLayout>
   );
 };

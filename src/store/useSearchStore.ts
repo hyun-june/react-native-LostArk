@@ -1,7 +1,13 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 
-const useSearchStore = create((set) => ({
+interface MySearchStore {
+  myChar: string;
+  updateChar: (value: string) => void;
+  fetchChar: () => Promise<void>;
+}
+
+const useSearchStore = create<MySearchStore>((set) => ({
   myChar: "",
   updateChar: (value) => set({ myChar: value }),
   fetchChar: async () => {

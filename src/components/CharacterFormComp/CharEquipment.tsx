@@ -7,8 +7,14 @@ import {
   jsonFormatter,
 } from "../../utils/formatJsonData";
 import { theme } from "../../theme/theme";
+import { ArmoryEquipment } from "../../models/entities";
 
-const CharEquipment = ({ data }) => {
+interface CharEquipmentType {
+  data: ArmoryEquipment[];
+}
+
+const CharEquipment = ({ data }: CharEquipmentType) => {
+  console.log("🚀 ~ CharEquipment ~ data:", data);
   const equipmentOrder = [1, 5, 2, 3, 4, 0];
   const equipMentData = [...data]?.slice(0, 6);
   // console.log("🚀 ~ CharEquipment ~ equipMentData:", equipMentData);

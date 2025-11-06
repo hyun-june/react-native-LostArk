@@ -1,4 +1,4 @@
-import { View, TextInput, Text } from "react-native";
+import { View, TextInput, Text, Pressable, Alert } from "react-native";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { theme } from "../theme/theme";
@@ -10,7 +10,7 @@ interface AddCharacterProps {
 
 const AddCharacter = ({ onClose }: AddCharacterProps) => {
   const [inputValue, setInputValue] = useState("");
-  const { updateChar } = useSearchStore();
+  const { myChar, updateChar } = useSearchStore();
 
   const handleSubmit = async () => {
     if (inputValue === "") return;
@@ -20,6 +20,19 @@ const AddCharacter = ({ onClose }: AddCharacterProps) => {
       onClose();
     } catch (error) {
       console.log("AsyncStorage save error:", error);
+    }
+  };
+
+  const deleteId = async () => {
+    if (!myChar) {
+      Alert.alert("등록된 아이디가 없습니다", "", [{ text: "확인" }]);
+      return;
+    }
+    try {
+      await AsyncStorage.removeItem("myChar");
+      onClose();
+    } catch (error) {
+      console.log("AsyncStorage remove error:", error);
     }
   };
 
@@ -43,6 +56,25 @@ const AddCharacter = ({ onClose }: AddCharacterProps) => {
         returnKeyType="done"
         onSubmitEditing={() => handleSubmit()}
       />
+      <Pressable
+        style={{
+          borderWidth: 1,
+          alignItems: "flex-end",
+        }}
+        onPress={deleteId}
+      >
+        <Text
+          style={{
+            color: "white",
+            backgroundColor: theme.text.red,
+            marginVertical: 10,
+            padding: 6,
+            borderRadius: 10,
+          }}
+        >
+          등록된 아이디 삭제
+        </Text>
+      </Pressable>
     </View>
   );
 };

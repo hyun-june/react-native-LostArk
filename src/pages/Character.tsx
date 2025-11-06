@@ -1,4 +1,4 @@
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { ActivityIndicator, View, Text } from "react-native";
 import { useGetCharacter } from "../hooks/useGetCharacter";
 import Tab from "../components/Tab";
@@ -18,7 +18,6 @@ const Character = () => {
   const { searchId } = route.params || {};
 
   const characterId = searchId || myChar;
-  // console.log("🚀 ~ Character ~ characterId:", characterId);
 
   const { data, isLoading, error } = useGetCharacter(characterId);
   // const { data, isLoading, error } = useGetCharacter("필례");

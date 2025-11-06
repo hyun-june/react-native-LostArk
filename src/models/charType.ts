@@ -1,3 +1,31 @@
+import {
+  ArkGrid,
+  ArkPassive,
+  ArmoryAvatar,
+  ArmoryCard,
+  ArmoryEngraving,
+  ArmoryEquipment,
+  ArmoryGem,
+  ArmoryProfile,
+  ArmorySkill,
+  Collectible,
+  ColosseumInfo,
+} from "./entities";
+
+export interface CharAllData {
+  ArkGrid: ArkGrid;
+  ArkPassive: ArkPassive;
+  ArmoryAvatar: ArmoryAvatar;
+  ArmoryCard: ArmoryCard;
+  ArmoryEngraving: ArmoryEngraving;
+  ArmoryEquipment: ArmoryEquipment[];
+  ArmoryGem: ArmoryGem;
+  ArmoryProfile: ArmoryProfile;
+  ArmorySkills: ArmorySkill[];
+  Collectibles: Collectible[];
+  ColosseumInfo: ColosseumInfo;
+}
+
 export interface CharData {
   ExpeditionLevel: number;
   CharacterName: string;

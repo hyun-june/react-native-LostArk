@@ -1,10 +1,15 @@
 import { useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, Pressable } from "react-native";
 import { theme } from "../theme/theme";
 import CharacterForm from "./CharacterForm";
 import CharEquipment from "./CharacterFormComp/CharEquipment";
+import { CharAllData } from "./../models/charType";
 
-const Tab = ({ data }) => {
+interface TabDataType {
+  data: CharAllData;
+}
+
+const Tab = ({ data }: TabDataType) => {
   // console.log("🚀 ~ Tab ~ data:", data);
   const [currentTab, setCurrentTab] = useState<number>(0);
 
@@ -19,7 +24,7 @@ const Tab = ({ data }) => {
     <View>
       <View style={{ flexDirection: "row", gap: 5 }}>
         {headerList.map((item, index) => (
-          <TouchableOpacity key={index} onPress={() => setCurrentTab(index)}>
+          <Pressable key={index} onPress={() => setCurrentTab(index)}>
             <Text
               style={[
                 styles.tabHeader,
@@ -28,7 +33,7 @@ const Tab = ({ data }) => {
             >
               {item.label}
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         ))}
       </View>
       <View style={{ paddingVertical: 20 }}>

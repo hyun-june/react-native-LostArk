@@ -5,10 +5,14 @@ import Header from "./Header";
 import { useState } from "react";
 import { Modal, Pressable, View } from "react-native";
 import AddCharacter from "./AddCharacter";
+import useSearchStore from "../store/useSearchStore";
+import { useNavigation } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 const BottomTab = () => {
   const [showModal, setShowModal] = useState(false);
+  const { myChar } = useSearchStore();
+  const navigation = useNavigation();
 
   return (
     <>
@@ -18,7 +22,7 @@ const BottomTab = () => {
         }}
       >
         <Tab.Screen
-          name="Home"
+          name="Main"
           component={Main}
           options={{ tabBarLabel: "홈" }}
         />
@@ -26,6 +30,14 @@ const BottomTab = () => {
           name="Character"
           component={Character}
           options={{ tabBarLabel: "캐릭터" }}
+          listeners={({ navigation }) => ({
+            tabPress: (e) => {
+              if (!myChar) {
+                e.preventDefault();
+                navigation.navigate("Main");
+              }
+            },
+          })}
         />
         <Tab.Screen
           name="MyChar"

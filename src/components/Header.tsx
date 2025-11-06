@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { TouchableOpacity, View, StyleSheet } from "react-native";
+import { Pressable, View, StyleSheet } from "react-native";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
 import { StatusBar } from "expo-status-bar";
@@ -24,12 +24,12 @@ const Header = () => {
     <View style={isMain ? styles.mainHeader : styles.subHeader}>
       <StatusBar style="light" />
       {route.name !== "Main" ? (
-        <TouchableOpacity
+        <Pressable
           onPress={() => navigation.goBack()}
           style={{ marginVertical: 10 }}
         >
           <Ionicons name="chevron-back-sharp" size={24} color="white" />
-        </TouchableOpacity>
+        </Pressable>
       ) : null}
       <SearchBar text={text} setText={setText} onSearch={onSearch} />
     </View>
