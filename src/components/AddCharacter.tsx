@@ -1,4 +1,11 @@
-import { View, TextInput, Text, Pressable, Alert } from "react-native";
+import {
+  View,
+  TextInput,
+  Text,
+  Pressable,
+  Alert,
+  StyleSheet,
+} from "react-native";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { theme } from "../theme/theme";
@@ -40,17 +47,7 @@ const AddCharacter = ({ onClose }: AddCharacterProps) => {
     <View>
       <TextInput
         placeholder="등록할 아이디를 입력해주세요."
-        style={{
-          color: theme.text.black,
-          backgroundColor: "white",
-          height: 50,
-          width: 300,
-          paddingHorizontal: 20,
-          paddingVertical: 10,
-          borderRadius: 20,
-          fontSize: 20,
-          lineHeight: 25,
-        }}
+        style={styles.AddInput}
         value={inputValue}
         onChangeText={setInputValue}
         returnKeyType="done"
@@ -63,20 +60,32 @@ const AddCharacter = ({ onClose }: AddCharacterProps) => {
         }}
         onPress={deleteId}
       >
-        <Text
-          style={{
-            color: "white",
-            backgroundColor: theme.text.red,
-            marginVertical: 10,
-            padding: 6,
-            borderRadius: 10,
-          }}
-        >
-          등록된 아이디 삭제
-        </Text>
+        <Text style={styles.AddText}>등록된 아이디 삭제</Text>
       </Pressable>
     </View>
   );
 };
 
 export default AddCharacter;
+
+const styles = StyleSheet.create({
+  AddInput: {
+    color: theme.text.black,
+    backgroundColor: "white",
+    height: 50,
+    width: 300,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+    fontSize: 20,
+    lineHeight: 25,
+  },
+
+  AddText: {
+    color: "white",
+    backgroundColor: theme.text.red,
+    marginVertical: 10,
+    padding: 6,
+    borderRadius: 10,
+  },
+});

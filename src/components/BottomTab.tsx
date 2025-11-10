@@ -7,6 +7,7 @@ import { Modal, Pressable, View } from "react-native";
 import AddCharacter from "./AddCharacter";
 import useSearchStore from "../store/useSearchStore";
 import { useNavigation } from "@react-navigation/native";
+import Homework from "./../pages/Homework";
 
 const Tab = createBottomTabNavigator();
 const BottomTab = () => {
@@ -41,7 +42,7 @@ const BottomTab = () => {
         />
         <Tab.Screen
           name="MyChar"
-          component={View}
+          component={Homework}
           options={{ tabBarLabel: "숙제" }}
         />
         <Tab.Screen
