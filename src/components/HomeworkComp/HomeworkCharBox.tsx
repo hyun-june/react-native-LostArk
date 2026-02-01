@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
     padding: 5,
     marginVertical: 5,
     gap: 5,
-    height: 200,
+    maxHeight: 200,
   },
   raidInner: {
     borderWidth: 1,
