@@ -49,4 +49,5 @@ export interface CharFormProps {
 export interface CharInfoProps {
   label: string;
   data: string | number;
+  isWeb?: boolean;
 }

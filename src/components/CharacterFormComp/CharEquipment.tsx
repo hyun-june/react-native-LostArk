@@ -17,18 +17,22 @@ const CharEquipment = ({ data }: CharEquipmentType) => {
 
   return (
     <View style={styles.container}>
-      <View style={{ gap: 10 }}>
-        {renderEquipment?.map((item, i) => {
-          return <EquipmentItem data={item} key={i} />;
-        })}
+      <View style={{ flexDirection: "row", gap: 10 }}>
+        <View style={{ gap: 10 }}>
+          {renderEquipment?.map((item, i) => {
+            return <EquipmentItem data={item} key={i} />;
+          })}
+        </View>
+
+        <View style={{ gap: 10 }}>
+          {accessoryData?.map((item, i) => (
+            <AccessoryItem data={item} key={i} />
+          ))}
+          <AccessoryItem data={data[11]} type="rock" />
+        </View>
       </View>
-      <View style={{ gap: 10 }}>
-        {accessoryData?.map((item, i) => (
-          <AccessoryItem data={item} key={i} />
-        ))}
-        <AccessoryItem data={data[11]} type="rock" />
-        <AccessoryItem data={data[12]} type="bracelet" />
-      </View>
+
+      <AccessoryItem data={data[12]} type="bracelet" />
     </View>
   );
 };
@@ -37,8 +41,6 @@ export default CharEquipment;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
     gap: 10,
-    width: "100%",
   },
 });

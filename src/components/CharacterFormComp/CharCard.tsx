@@ -4,6 +4,7 @@ import Entypo from "@expo/vector-icons/Entypo";
 import CharInfo from "./CharInfo";
 import { CharFormProps } from "../../models/charType";
 import { theme } from "../../theme/theme";
+import { isWeb } from "../../utils/platform";
 
 const CharCard = ({ charProfile, classEngraving }: CharFormProps) => {
   const type = 0;
@@ -19,8 +20,6 @@ const CharCard = ({ charProfile, classEngraving }: CharFormProps) => {
   return (
     <View
       style={{
-        borderColor: "white",
-        borderWidth: 1,
         padding: 5,
       }}
     >
@@ -30,8 +29,8 @@ const CharCard = ({ charProfile, classEngraving }: CharFormProps) => {
             uri: charProfile?.CharacterImage,
           }}
           style={{
-            width: 160,
-            height: 160,
+            width: isWeb ? 260 : 160,
+            height: isWeb ? 260 : 160,
             borderRadius: 30,
           }}
         />
@@ -59,7 +58,13 @@ const CharCard = ({ charProfile, classEngraving }: CharFormProps) => {
           </View>
 
           <View style={{ gap: 3 }}>
-            <Text style={{ color: "white", fontSize: 13, marginBottom: 5 }}>
+            <Text
+              style={{
+                color: "white",
+                fontSize: isWeb ? 18 : 13,
+                marginBottom: 5,
+              }}
+            >
               LV.{charProfile?.CharacterLevel} {charProfile?.CharacterName}
             </Text>
             <View style={{ marginBottom: 5 }}>
@@ -70,7 +75,7 @@ const CharCard = ({ charProfile, classEngraving }: CharFormProps) => {
 
             <View style={styles.iconWrapper}>
               <Entypo name="shield" size={18} color="white" />
-              <Text style={{ color: "white", fontSize: 14 }}>
+              <Text style={{ color: "white", fontSize: isWeb ? 18 : 14 }}>
                 {charProfile?.ItemAvgLevel}
               </Text>
             </View>
@@ -80,7 +85,7 @@ const CharCard = ({ charProfile, classEngraving }: CharFormProps) => {
                 size={18}
                 color="white"
               />
-              <Text style={{ color: "white", fontSize: 14 }}>
+              <Text style={{ color: "white", fontSize: isWeb ? 18 : 14 }}>
                 {charProfile?.CombatPower}
               </Text>
             </View>
@@ -88,10 +93,22 @@ const CharCard = ({ charProfile, classEngraving }: CharFormProps) => {
         </View>
       </View>
       <View style={{ flexDirection: "row", gap: 15, marginLeft: 10 }}>
-        <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
+        <Text
+          style={{
+            color: "white",
+            fontSize: isWeb ? 18 : 14,
+            fontWeight: "bold",
+          }}
+        >
           #{charProfile?.CharacterClassName}
         </Text>
-        <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
+        <Text
+          style={{
+            color: "white",
+            fontSize: isWeb ? 18 : 14,
+            fontWeight: "bold",
+          }}
+        >
           #{classEngraving}
         </Text>
       </View>

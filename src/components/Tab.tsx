@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Pressable } from "react-native";
 import { theme } from "../theme/theme";
 import CharEquipment from "./CharacterFormComp/CharEquipment";
 import { CharAllData } from "./../models/charType";
+import { isWeb } from "../utils/platform";
 
 interface TabDataType {
   data: CharAllData;
@@ -27,6 +28,8 @@ const Tab = ({ data }: TabDataType) => {
               style={[
                 styles.tabHeader,
                 currentTab === index ? styles.activeTab : styles.inactiveTab,
+                ,
+                { paddingHorizontal: isWeb ? 40 : 20 },
               ]}
             >
               {item.label}
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     borderWidth: 2,
     borderRadius: 30,
-    paddingHorizontal: 20,
+
     paddingVertical: 10,
     borderColor: "white",
   },
