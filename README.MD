@@ -1,4 +1,4 @@
-# 🚀 LostSchedule (로스트스케줄)
+# [🚀 LostSchedule](https://lostschedule.netlify.app/)
 
 **"로스트아크 숙제, 이제 게임 밖에서도 간편하게 관리하세요."**
 
