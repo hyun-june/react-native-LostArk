@@ -41,8 +41,9 @@
 | **Language**  | ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat-square&logo=typescript&logoColor=white)                                                                                                  |
 | **Network**   | Axios                                                                                                                                                                                                                   |
 
-## 📖 사용 설명서 (User Guide)
+## 🔗 프로젝트 링크 (Project Links)
 
-프로젝트의 상세한 사용법은 아래 노션 페이지에서 확인하실 수 있습니다.
-
-[![Notion](https://img.shields.io/badge/Notion-사용_설명서_보러가기-000000?style=for-the-badge&logo=notion&logoColor=white)](https://daily-creator-da3.notion.site/LostSchedule-2fed357c342880caae04cf41e6c037fc?pvs=73)
+| 구분               | 링크                                                                                                                                                                                                                    |
+| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **📖 사용 설명서** | [![Notion](https://img.shields.io/badge/Notion-사용_설명서-000000?style=flat-square&logo=notion&logoColor=white)](https://daily-creator-da3.notion.site/LostSchedule-2fed357c342880caae04cf41e6c037fc?pvs=73)           |
+| **📝 개발 일지**   | [![Velog](https://img.shields.io/badge/Velog-개발_로그_읽기-20C997?style=flat-square&logo=velog&logoColor=white)](https://velog.io/@hyun_jun/LostArk-%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B0%9C%EB%B0%9C-%EC%9D%BC%EC%A7%80) |
