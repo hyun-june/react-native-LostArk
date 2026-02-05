@@ -31,7 +31,7 @@ const Homework = () => {
     return [...data].sort(
       (a, b) =>
         toNumberForItemLevel(b.ItemAvgLevel) -
-        toNumberForItemLevel(a.ItemAvgLevel)
+        toNumberForItemLevel(a.ItemAvgLevel),
     );
   };
 
@@ -43,10 +43,17 @@ const Homework = () => {
   }, data);
 
   return (
-    <View>
-      <HomeworkDropdown sortData={sortData} />
+    <View style={{ flex: 1 }}>
+      <View style={{ zIndex: 10 }}>
+        <HomeworkDropdown sortData={sortData} />
+      </View>
 
-      <ScrollView style={{ paddingHorizontal: 10 }}>
+      <ScrollView
+        style={{
+          paddingHorizontal: 10,
+          flex: 1,
+        }}
+      >
         <HomeworkRaidBox data={data} />
       </ScrollView>
     </View>

@@ -1,7 +1,9 @@
+import { useScreen } from "../../hooks/useScreen";
 import { CharInfoProps } from "../../models/charType";
 import { View, Text, StyleSheet } from "react-native";
 
 const CharInfo = ({ label, data }: CharInfoProps) => {
+  const { isDesktopWeb } = useScreen();
   return (
     <View
       style={{
@@ -19,11 +21,18 @@ const CharInfo = ({ label, data }: CharInfoProps) => {
         }}
       />
 
-      <Text style={style.charInfoLabel}>{label}</Text>
+      <Text
+        style={[
+          styles.charInfoLabel,
+          { fontSize: isDesktopWeb ? 16 : 12, width: isDesktopWeb ? 45 : 35 },
+        ]}
+      >
+        {label}
+      </Text>
       <Text
         style={{
           color: "white",
-          fontSize: 12,
+          fontSize: isDesktopWeb ? 16 : 14,
         }}
       >
         {data}
@@ -34,12 +43,10 @@ const CharInfo = ({ label, data }: CharInfoProps) => {
 
 export default CharInfo;
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   charInfoLabel: {
     color: "white",
-    fontSize: 12,
     fontWeight: "bold",
     marginRight: 3,
-    width: 35,
   },
 });

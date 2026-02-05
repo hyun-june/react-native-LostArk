@@ -8,7 +8,7 @@ import Homework from "./../pages/Homework";
 import WeeklyReport from "../pages/WeeklyReport";
 import useHomeworkStore from "../store/useHomeworkStore";
 import { useEffect } from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Octicons from "@expo/vector-icons/Octicons";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -19,11 +19,13 @@ const BottomTab = () => {
   const { myChar } = useSearchStore();
   const navigation = useNavigation();
 
-  const { checkWeeklyReset } = useHomeworkStore();
+  const { checkWeeklyReset, hasHydrated } = useHomeworkStore();
 
   useEffect(() => {
-    checkWeeklyReset();
-  }, []);
+    if (hasHydrated) {
+      checkWeeklyReset();
+    }
+  }, [hasHydrated]);
 
   return (
     <>
@@ -40,27 +42,48 @@ const BottomTab = () => {
           name="Main"
           component={Main}
           options={{
-            tabBarLabel: () => (
-              <Text style={{ fontSize: 12, marginTop: 2, color: "white" }}>
+            tabBarLabel: ({ focused }) => (
+              <Text
+                style={{
+                  fontSize: 12,
+                  marginTop: 2,
+                  color: focused ? "white" : "gray",
+                }}
+              >
                 홈
               </Text>
             ),
-            tabBarIcon: () => (
-              <FontAwesome5 name="home" size={24} color="white" />
+            tabBarIcon: ({ focused }) => (
+              <FontAwesome5
+                name="home"
+                size={24}
+                color={focused ? "white" : "gray"}
+              />
             ),
           }}
         />
+
         <Tab.Screen
           name="Character"
           component={Character}
           options={{
-            tabBarLabel: () => (
-              <Text style={{ fontSize: 12, marginTop: 2, color: "white" }}>
+            tabBarLabel: ({ focused }) => (
+              <Text
+                style={{
+                  fontSize: 12,
+                  marginTop: 2,
+                  color: focused ? "white" : "gray",
+                }}
+              >
                 캐릭터
               </Text>
             ),
-            tabBarIcon: () => (
-              <Octicons name="person" size={24} color="white" />
+            tabBarIcon: ({ focused }) => (
+              <Octicons
+                name="person"
+                size={24}
+                color={focused ? "white" : "gray"}
+              />
             ),
           }}
           listeners={({ navigation }) => ({
@@ -76,13 +99,23 @@ const BottomTab = () => {
           name="MyChar"
           component={Homework}
           options={{
-            tabBarLabel: () => (
-              <Text style={{ fontSize: 12, marginTop: 2, color: "white" }}>
+            tabBarLabel: ({ focused }) => (
+              <Text
+                style={{
+                  fontSize: 12,
+                  marginTop: 2,
+                  color: focused ? "white" : "gray",
+                }}
+              >
                 숙제
               </Text>
             ),
-            tabBarIcon: () => (
-              <AntDesign name="schedule" size={24} color="white" />
+            tabBarIcon: ({ focused }) => (
+              <AntDesign
+                name="schedule"
+                size={24}
+                color={focused ? "white" : "gray"}
+              />
             ),
           }}
         />
@@ -90,13 +123,23 @@ const BottomTab = () => {
           name="WeeklyReport"
           component={WeeklyReport}
           options={{
-            tabBarLabel: () => (
-              <Text style={{ fontSize: 12, marginTop: 2, color: "white" }}>
+            tabBarLabel: ({ focused }) => (
+              <Text
+                style={{
+                  fontSize: 12,
+                  marginTop: 2,
+                  color: focused ? "white" : "gray",
+                }}
+              >
                 주간 레이드
               </Text>
             ),
-            tabBarIcon: () => (
-              <FontAwesome5 name="receipt" size={24} color="white" />
+            tabBarIcon: ({ focused }) => (
+              <FontAwesome5
+                name="receipt"
+                size={24}
+                color={focused ? "white" : "gray"}
+              />
             ),
           }}
         />

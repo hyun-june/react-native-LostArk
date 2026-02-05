@@ -3,9 +3,11 @@ import EquipmentBox from "./EquipmentBox";
 import { cleanText, jsonFormatter } from "../../utils/formatJsonData";
 import { theme } from "../../theme/theme";
 import { ColorKey } from "../../models/common";
+import { useScreen } from "../../hooks/useScreen";
 
 const AccessoryItem = ({ ...props }) => {
   const { data, type } = props;
+  const { isDesktopWeb } = useScreen();
 
   const boxStyles = {
     FE9600: theme.box.gold,
@@ -26,7 +28,7 @@ const AccessoryItem = ({ ...props }) => {
   const accessoryOptions = accessoryData
     ? [
         ...accessoryData?.matchAll(
-          />([^<]+)<FONT COLOR='([^']+)'>([^<]+)<\/FONT>/gi
+          />([^<]+)<FONT COLOR='([^']+)'>([^<]+)<\/FONT>/gi,
         ),
       ].map((match) => ({
         text: `${match[1].trim()} ${match[3].trim()}`,
@@ -38,6 +40,7 @@ const AccessoryItem = ({ ...props }) => {
 
   if (type === "rock") {
     let base = formatData?.Element_006?.value?.Element_000?.contentStr;
+
     if (base === undefined)
       base = formatData?.Element_007?.value?.Element_000?.contentStr;
 
@@ -48,19 +51,19 @@ const AccessoryItem = ({ ...props }) => {
     ];
   }
 
-  // let braceletOptions: string[] = [];
+  let braceletOptions: string[] = [];
 
-  // if (type === "bracelet") {
-  //   const base = formatData?.Element_005?.value?.Element_001;
-  //   const clean = base.split(/<img[^>]*>/gi).filter(Boolean);
+  if (type === "bracelet") {
+    const base = formatData?.Element_005?.value?.Element_001;
+    const clean = base.split(/<img[^>]*>/gi).filter(Boolean);
 
-  //   braceletOptions = clean.map((text: string) =>
-  //     text
-  //       .replace(/<[^>]+>/g, "")
-  //       .replace(/\s+/g, " ")
-  //       .trim()
-  //   );
-  // }
+    braceletOptions = clean.map((text: string) =>
+      text
+        .replace(/<[^>]+>/g, "")
+        .replace(/\s+/g, " ")
+        .trim(),
+    );
+  }
 
   const qualityValue = formatData?.Element_001?.value?.qualityValue;
 
@@ -75,7 +78,12 @@ const AccessoryItem = ({ ...props }) => {
             return (
               <View key={i} style={styles.diamondText}>
                 <View style={[styles.diamond, boxStyles[item.color]]} />
-                <Text style={{ color: textStyles[item.color], fontSize: 8 }}>
+                <Text
+                  style={{
+                    color: textStyles[item.color],
+                    fontSize: isDesktopWeb ? 12 : 8,
+                  }}
+                >
                   {item.text}
                 </Text>
               </View>
@@ -88,7 +96,7 @@ const AccessoryItem = ({ ...props }) => {
           {rockOptions?.map((item, i) => (
             <Text
               style={{
-                fontSize: 8,
+                fontSize: isDesktopWeb ? 12 : 8,
                 color: i === 2 ? theme.text.red : "white",
               }}
               key={i}
@@ -98,12 +106,22 @@ const AccessoryItem = ({ ...props }) => {
           ))}
         </View>
       ) : null}
-
       {/* {type === "bracelet" ? (
-        <View>
-          {braceletOptions.slice(0, 2)?.map((item, i) => (
-            <Text style={{ color: "white" }} key={i}>
-              {item}
+        <View style={{ maxWidth: 250 }}>
+          <View style={{ flexDirection: "row", gap: 8 }}>
+            {braceletOptions?.slice(0, 2).map((item, i) => (
+              <Text key={i} style={{ color: "white", fontSize: 8 }}>
+                {item}
+              </Text>
+            ))}
+          </View>
+
+          {braceletOptions?.slice(2).map((item, i) => (
+            <Text
+              key={i}
+              style={{ color: "white", fontSize: 8, marginBottom: 3 }}
+            >
+              ৹ {item}
             </Text>
           ))}
         </View>
@@ -124,5 +142,6 @@ const styles = StyleSheet.create({
   diamondText: {
     flexDirection: "row",
     gap: 5,
+    alignItems: "center",
   },
 });

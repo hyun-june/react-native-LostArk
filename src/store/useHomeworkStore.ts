@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getWednesdayRange } from "../utils/getWednesday";
+import { getWeeklyResetBase } from "../utils/getWednesday";
 import { persist } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -16,10 +16,17 @@ interface MyHomeWorkStore {
   charGold: Record<string, number>;
   totalGold: number;
   lastResetAt: number | null;
+  hasHydrated: boolean;
+  setHasHydrated: (v: boolean) => void;
   setChecked: (charId: string, title: string, data: CheckedData | null) => void;
   setCharGold: (charId: string, value: number) => void;
   checkWeeklyReset: () => void;
 }
+
+// const storage =
+//   Platform.OS === "web"
+//     ? createJSONStorage(() => localStorage)
+//     : createJSONStorage(() => AsyncStorage);
 
 const useHomeworkStore = create<MyHomeWorkStore>()(
   persist(
@@ -29,6 +36,8 @@ const useHomeworkStore = create<MyHomeWorkStore>()(
         charGold: {},
         totalGold: 0,
         lastResetAt: null,
+        hasHydrated: false,
+        setHasHydrated: (v) => set({ hasHydrated: v }),
         setChecked: (charId, title, data) =>
           set((state) => {
             const next = { ...state.checked };
@@ -58,10 +67,8 @@ const useHomeworkStore = create<MyHomeWorkStore>()(
             };
           }),
         checkWeeklyReset: () => {
-          const { lastWednesday } = getWednesdayRange();
-          const currentBase = lastWednesday.getTime();
+          const currentBase = getWeeklyResetBase();
           const lastBase = get().lastResetAt;
-
           if (lastBase !== currentBase) {
             set({
               checked: {},
@@ -86,6 +93,9 @@ const useHomeworkStore = create<MyHomeWorkStore>()(
         removeItem: async (name) => {
           await AsyncStorage.removeItem(name);
         },
+      },
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
       },
     },
   ),

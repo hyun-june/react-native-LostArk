@@ -32,14 +32,17 @@ const Character = () => {
 
   return (
     <AppLayout>
-      <View style={{ alignItems: "center" }}>
+      <View
+        style={{
+          marginHorizontal: "auto",
+        }}
+      >
         {data && (
           <CharCard
             charProfile={data?.ArmoryProfile}
             classEngraving={data?.ArkPassive?.Title}
           />
         )}
-
         <Tab data={data} />
       </View>
     </AppLayout>

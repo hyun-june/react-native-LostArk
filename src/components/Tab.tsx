@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Pressable } from "react-native";
 import { theme } from "../theme/theme";
 import CharEquipment from "./CharacterFormComp/CharEquipment";
 import { CharAllData } from "./../models/charType";
+import { useScreen } from "../hooks/useScreen";
 
 interface TabDataType {
   data: CharAllData;
@@ -10,7 +11,7 @@ interface TabDataType {
 
 const Tab = ({ data }: TabDataType) => {
   const [currentTab, setCurrentTab] = useState<number>(0);
-
+  const { isDesktopWeb } = useScreen();
   const headerList = [
     { label: "장비", des: <CharEquipment data={data?.ArmoryEquipment} /> },
     { label: "아크패시브", des: "아크패시브탭" },
@@ -27,6 +28,8 @@ const Tab = ({ data }: TabDataType) => {
               style={[
                 styles.tabHeader,
                 currentTab === index ? styles.activeTab : styles.inactiveTab,
+                ,
+                { paddingHorizontal: isDesktopWeb ? 40 : 20 },
               ]}
             >
               {item.label}
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     borderWidth: 2,
     borderRadius: 30,
-    paddingHorizontal: 20,
+
     paddingVertical: 10,
     borderColor: "white",
   },

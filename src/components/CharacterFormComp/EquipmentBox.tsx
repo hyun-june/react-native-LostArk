@@ -1,12 +1,20 @@
 import { View, Image, StyleSheet } from "react-native";
 import { theme } from "../../theme/theme";
+import { useScreen } from "../../hooks/useScreen";
 
 const EquipmentBox = ({ ...props }) => {
   const { data: item } = props;
+  const { isDesktopWeb } = useScreen();
 
   return (
-    <View style={styles.container}>
-      <Image style={styles.equipmentBox} source={{ uri: item?.Icon }}></Image>
+    <View>
+      <Image
+        style={[
+          styles.equipmentBox,
+          { width: isDesktopWeb ? 50 : 40, height: isDesktopWeb ? 50 : 40 },
+        ]}
+        source={{ uri: item?.Icon }}
+      ></Image>
     </View>
   );
 };
@@ -14,13 +22,7 @@ const EquipmentBox = ({ ...props }) => {
 export default EquipmentBox;
 
 const styles = StyleSheet.create({
-  container: {
-    height: 40,
-    width: 40,
-  },
   equipmentBox: {
-    width: 40,
-    height: 40,
     borderWidth: 1,
     borderRadius: 5,
     borderColor: "#757575",

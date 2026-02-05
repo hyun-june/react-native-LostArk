@@ -65,43 +65,38 @@ const HomeworkCharBox = ({ ...props }) => {
   useEffect(() => {
     const checkedChar = checked[CharacterName];
     if (!checkedChar) return;
-    Object.keys(checkedChar).forEach((title) => {
+
+    const nextGold: Record<string, boolean> = {};
+    const nextMore: Record<string, boolean> = {};
+    const nextDiff: Record<string, string> = {};
+
+    Object.entries(checkedChar).forEach(([title, data]) => {
       const raid = raidData.find((r) => r.title === title);
       if (!raid) return;
 
-      const stage = raid.stages.find(
-        (s) => s.difficulty === selectedDifficulty[raid.raidKey],
-      );
-
-      setChecked(CharacterName, title, {
-        ...checkedChar[title],
-        difficulty: stage?.difficulty,
-        more: moreActive[raid.raidKey] ?? false,
-        gold: goldSelect[raid.raidKey] ?? false,
-      });
+      nextGold[raid.raidKey] = data.gold;
+      nextMore[raid.raidKey] = data.more;
+      nextDiff[raid.raidKey] = data.difficulty;
     });
-  }, [selectedDifficulty, goldSelect, moreActive]);
 
-  const handleMore = (raid) => {
-    setMoreActive((prev) => {
-      const next = {
-        ...prev,
-        [raid.raidKey]: !prev[raid.raidKey],
-      };
+    setGoldSelect(nextGold);
+    setMoreActive(nextMore);
+    setSelectedDifficulty((prev) => ({ ...prev, ...nextDiff }));
+  }, [CharacterName]);
 
-      const shouldCheck = next[raid.raidKey] || goldSelect[raid.raidKey];
+  useEffect(() => {
+    raidData.forEach((raid) => {
+      const shouldCheck = moreActive[raid.raidKey] || goldSelect[raid.raidKey];
       toggleCheck(CharacterName, raid, shouldCheck);
-
-      return next;
     });
-  };
+  }, [moreActive, goldSelect]);
 
   const toggleCheck = (CharacterName, raid, value) => {
     const { title, stages, raidKey } = raid;
 
-    const currentStage = stages.find(
-      (stage) => stage.difficulty === selectedDifficulty[raidKey],
-    );
+    const currentStage =
+      stages.find((s) => s.difficulty === selectedDifficulty[raidKey]) ||
+      stages[0];
 
     if (!value) {
       setChecked(CharacterName, title, undefined);
@@ -112,6 +107,13 @@ const HomeworkCharBox = ({ ...props }) => {
       gold: goldSelect[raidKey] ?? false,
       more: moreActive[raidKey] ?? false,
     });
+  };
+
+  const handleMore = (raid) => {
+    setMoreActive((prev) => ({
+      ...prev,
+      [raid.raidKey]: !prev[raid.raidKey],
+    }));
   };
 
   const selectGold = (raid) => {
@@ -127,13 +129,6 @@ const HomeworkCharBox = ({ ...props }) => {
         alert("골드는 최대 3개 레이드까지만 받을 수 있어요!");
         return prev;
       }
-      const next = {
-        ...prev,
-        [raid.raidKey]: !prev[raid.raidKey],
-      };
-
-      const shouldCheck = next[raid.raidKey] || moreActive[raid.raidKey];
-      toggleCheck(CharacterName, raid, shouldCheck);
 
       return { ...prev, [raid.raidKey]: true };
     });
@@ -268,15 +263,17 @@ const HomeworkCharBox = ({ ...props }) => {
                     ))}
                   </View>
                   {/* 더보기 */}
-                  <Pressable style={styles.moreBtn}>
+                  <Pressable
+                    style={styles.moreBtn}
+                    onPress={() => {
+                      handleMore(raid);
+                    }}
+                  >
                     <Text
                       style={[
                         { color: "gray" },
                         moreActive[raid.raidKey] && styles.textActive,
                       ]}
-                      onPress={() => {
-                        handleMore(raid);
-                      }}
                     >
                       더보기
                     </Text>
@@ -328,7 +325,7 @@ const styles = StyleSheet.create({
     padding: 5,
     marginVertical: 5,
     gap: 5,
-    height: 200,
+    maxHeight: 200,
   },
   raidInner: {
     borderWidth: 1,

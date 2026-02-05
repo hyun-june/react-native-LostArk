@@ -18,9 +18,9 @@ export const raidData: RaidGroup[] = [
     title: "세르카",
     phases: 2,
     stages: [
-      { difficulty: "nightmare", level: 1740, gold: 54000, more: 17280 },
-      { difficulty: "hard", level: 1730, gold: 44000, more: 14080 },
       { difficulty: "normal", level: 1710, gold: 35000, more: 11200 },
+      { difficulty: "hard", level: 1730, gold: 44000, more: 14080 },
+      { difficulty: "nightmare", level: 1740, gold: 54000, more: 17280 },
     ],
   },
   {

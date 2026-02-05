@@ -7,11 +7,12 @@ import {
   jsonFormatter,
 } from "../../utils/formatJsonData";
 import { useEffect, useState } from "react";
+import { useScreen } from "../../hooks/useScreen";
 
 const EquipmentItem = ({ ...props }) => {
   const [advancedLevel, setAdvancedLevel] = useState("");
   const { data } = props;
-
+  const { isDesktopWeb } = useScreen();
   const formatData = jsonFormatter(data?.Tooltip);
 
   // 품질
@@ -21,7 +22,7 @@ const EquipmentItem = ({ ...props }) => {
   useEffect(() => {
     if (formatData?.Element_005?.type === "SingleTextBox") {
       const advancedLevelText = getFirstNumber(
-        cleanText(formatData?.Element_005?.value)
+        cleanText(formatData?.Element_005?.value),
       );
 
       setAdvancedLevel(advancedLevelText || "");
@@ -39,7 +40,7 @@ const EquipmentItem = ({ ...props }) => {
           <Text
             style={{
               ...styles.textBox,
-              fontSize: 10,
+              fontSize: isDesktopWeb ? 16 : 12,
               color: "#FFE940",
             }}
           >
