@@ -13,16 +13,20 @@ const Tab = ({ data }: TabDataType) => {
   const [currentTab, setCurrentTab] = useState<number>(0);
   const { isDesktopWeb } = useScreen();
   const headerList = [
-    { label: "장비", des: <CharEquipment data={data?.ArmoryEquipment} /> },
-    { label: "아크패시브", des: "아크패시브탭" },
-    { label: "스킬", des: "스킬탭" },
-    { label: "아바타", des: "아바타탭" },
+    {
+      label: "장비",
+      des: <CharEquipment data={data?.ArmoryEquipment} />,
+      disabled: false,
+    },
+    { label: "아크패시브", des: "아크패시브탭", disabled: true },
+    { label: "스킬", des: "스킬탭", disabled: true },
+    { label: "아바타", des: "아바타탭", disabled: true },
   ];
 
   return (
     <View>
       <View style={{ flexDirection: "row", gap: 5 }}>
-        {headerList.map((item, index) => (
+        {/* {headerList.map((item, index) => (
           <Pressable key={index} onPress={() => setCurrentTab(index)}>
             <Text
               style={[
@@ -35,7 +39,28 @@ const Tab = ({ data }: TabDataType) => {
               {item.label}
             </Text>
           </Pressable>
-        ))}
+        ))} */}
+        {headerList.map((item, index) => {
+          const isDisabled = item.disabled;
+          return (
+            <Pressable
+              key={index}
+              disabled={isDisabled}
+              onPress={() => setCurrentTab(index)}
+              style={{ opacity: isDisabled ? 0.4 : 1 }}
+            >
+              <Text
+                style={[
+                  styles.tabHeader,
+                  currentTab === index ? styles.activeTab : styles.inactiveTab,
+                  { paddingHorizontal: isDesktopWeb ? 40 : 20 },
+                ]}
+              >
+                {item.label}
+              </Text>
+            </Pressable>
+          );
+        })}
       </View>
       <View style={{ paddingVertical: 20 }}>
         <Text style={styles.tabBody}>{headerList[currentTab].des}</Text>
