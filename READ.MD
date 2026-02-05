@@ -32,4 +32,8 @@
 | **Language**  | ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat-square&logo=typescript&logoColor=white)                                                                                                  |
 | **Network**   | Axios                                                                                                                                                                                                                   |
 
----
+## 📖 사용 설명서 (User Guide)
+
+프로젝트의 상세한 사용법은 아래 노션 페이지에서 확인하실 수 있습니다.
+
+[![Notion](https://img.shields.io/badge/Notion-사용_설명서_보러가기-000000?style=for-the-badge&logo=notion&logoColor=white)](https://daily-creator-da3.notion.site/LostSchedule-2fed357c342880caae04cf41e6c037fc?pvs=73)
