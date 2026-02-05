@@ -1,5 +1,5 @@
 import { useRoute } from "@react-navigation/native";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import { useGetCharacter } from "../hooks/useGetCharacter";
 import Tab from "../components/Tab";
 import { CharRouteProp } from "../models/routeType";
@@ -32,14 +32,16 @@ const Character = () => {
 
   return (
     <AppLayout>
-      {data && (
-        <CharCard
-          charProfile={data?.ArmoryProfile}
-          classEngraving={data?.ArkPassive?.Title}
-        />
-      )}
+      <View style={{ alignItems: "center" }}>
+        {data && (
+          <CharCard
+            charProfile={data?.ArmoryProfile}
+            classEngraving={data?.ArkPassive?.Title}
+          />
+        )}
 
-      <Tab data={data} />
+        <Tab data={data} />
+      </View>
     </AppLayout>
   );
 };
