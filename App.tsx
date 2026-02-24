@@ -8,6 +8,7 @@ import { theme } from "./src/theme/theme";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTab from "./src/components/BottomTab";
+import { AnalyticsProvider } from "./src/providers/AnalyticsProvider";
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
@@ -38,15 +39,17 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
-        <NavigationContainer theme={MyTheme}>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Tabs"
-              component={BottomTab}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <AnalyticsProvider>
+          <NavigationContainer theme={MyTheme}>
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Tabs"
+                component={BottomTab}
+                options={{ headerShown: false }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>{" "}
+        </AnalyticsProvider>
       </SafeAreaProvider>
     </QueryClientProvider>
   );
