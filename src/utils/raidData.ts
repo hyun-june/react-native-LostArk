@@ -6,13 +6,23 @@ interface RaidGroup {
 }
 
 interface RaidStages {
-  difficulty: "normal" | "hard" | "nightmare";
+  difficulty: "normal" | "hard" | "nightmare" | "stage1" | "stage2" | "stage3";
   level: number;
   gold: number;
   more: number;
 }
 
 export const raidData: RaidGroup[] = [
+  {
+    raidKey: "Horizon",
+    title: "지평의 성당",
+    phases: 2,
+    stages: [
+      { difficulty: "stage1", level: 1700, gold: 30000, more: 9600 },
+      { difficulty: "stage2", level: 1720, gold: 40000, more: 12800 },
+      { difficulty: "stage3", level: 1750, gold: 50000, more: 16000 },
+    ],
+  },
   {
     raidKey: "Serca",
     title: "세르카",

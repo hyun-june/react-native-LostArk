@@ -170,7 +170,7 @@ const HomeworkCharBox = ({ ...props }) => {
       </View>
       <ScrollView style={styles.raid}>
         {raidData.map((raid) => {
-          const stage = raid.stages.find(
+          const stage = raid?.stages?.find(
             (s) => s.difficulty === selectedDifficulty[raid.raidKey],
           );
 
@@ -215,7 +215,7 @@ const HomeworkCharBox = ({ ...props }) => {
                   {/* 제목 */}
                   <View style={{ flexDirection: "row" }}>
                     <Text style={styles.raidHeadText}>
-                      {raid.title}({DIFFICULTY_LABEL[stage?.difficulty]})
+                      {raid.title}({DIFFICULTY_LABEL[stage.difficulty]})
                     </Text>
                   </View>
                   {/* 골드 */}
