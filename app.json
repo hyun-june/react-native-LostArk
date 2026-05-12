@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "LostSchedule",
-    "slug": "LostSchedule",
+    "name": "쌀나무",
+    "slug": "쌀나무",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/favicon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "platforms": ["ios", "android", "web"],
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/favicon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/favicon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
@@ -35,8 +35,8 @@
       "pwa": {
         "enabled": true,
         "manifest": {
-          "name": "LostSchedule",
-          "short_name": "LostSchedule",
+          "name": "쌀나무",
+          "short_name": "쌀나무",
           "start_url": "/",
           "display": "standalone",
           "background_color": "#ffffff",
