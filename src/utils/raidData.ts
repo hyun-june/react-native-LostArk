@@ -13,17 +13,17 @@ interface RaidStages {
 }
 
 export const raidData: RaidGroup[] = [
-      {
-    raidKey: "abrelshud_EX",
-    title: "2막: 아브렐슈드 익스트림",
-    phases: 1,
-    stages: [
-      { difficulty: "normal", level: 1720, gold: 20000, more: 0 },
-      { difficulty: "hard", level: 1750, gold: 45000, more: 0 },
-      { difficulty: "nightmare", level: 1770, gold: 45000, more: 0 },
-    ],
-  },
-    {
+  //     {
+  //   raidKey: "abrelshud_EX",
+  //   title: "2막: 아브렐슈드 익스트림",
+  //   phases: 1,
+  //   stages: [
+  //     { difficulty: "normal", level: 1720, gold: 20000, more: 0 },
+  //     { difficulty: "hard", level: 1750, gold: 45000, more: 0 },
+  //     { difficulty: "nightmare", level: 1770, gold: 45000, more: 0 },
+  //   ],
+  // },
+  {
     raidKey: "egir_EX",
     title: "1막: 에기르 익스트림",
     phases: 1,
